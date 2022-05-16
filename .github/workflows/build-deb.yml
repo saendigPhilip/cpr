@@ -50,5 +50,5 @@ jobs:
       with:
         name: artifact-deb
         path: |
-          ${{github.workspace}}/build/*.deb
+          ./*.deb
       
