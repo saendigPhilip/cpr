@@ -45,4 +45,10 @@ jobs:
           arch: 'amd64'
           depends: 'libc6 (>= 2.2.1), libssl-dev (>= 1.1.0)'
           desc: 'A simple wrapper around libcurl for C++'
+    - name: Upload deb-package
+      uses: actions/upload-artifact@v3
+      with:
+        name: artifact-deb
+        path: |
+          ${{github.workspace}}/build/*.deb
       
