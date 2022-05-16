@@ -1,0 +1,48 @@
+name: CI
+on:
+  push:
+    branches: [ build-deb-action-integration ]
+  pull_request:
+    branches: [ build-deb-action-integration ]
+
+jobs:
+  package-ubuntu-20-shared-gcc-ssl:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        submodules: true
+    - name: Update package list
+      run: sudo apt update
+    - name: Install libssl-dev
+      run: sudo apt install libssl-dev
+    - name: "[Release g++] Build & Test"
+      env:
+        CPR_BUILD_TESTS: ON
+      uses: ashutoshvarma/action-cmake-build@master
+      with:
+        build-dir: ${{github.workspace}}/build
+        source-dir: ${{github.workspace}}
+        cc: gcc
+        cxx: g++
+        build-type: Release
+        run-test: true
+        ctest-options: -V
+        configure-options: -DBUILD_SHARED_LIBS=ON
+    - name: Install in local subdirectory
+      run: |
+        mkdir -p ${{github.workspace}}/build/.debpkg
+        cd ${{github.workspace}}/build
+        make DESTDIR=./.debpkg/ install
+    - name: Package with build-deb-action
+      uses: jiro4989/build-deb-action@v2
+      with:
+          package: cpr
+          package_root: ${{github.workspace}}/build/.debpkg
+          maintainer: Philip Sändig
+          version: ${{ github.ref }}
+          arch: 'amd64'
+          depends: 'libc6 (>= 2.2.1), libssl-dev (>= 1.1.0)'
+          desc: 'A simple wrapper around libcurl for C++'
+      
