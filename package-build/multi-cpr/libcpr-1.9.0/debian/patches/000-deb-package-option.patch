@@ -1,0 +1,30 @@
+Description: Add deb packaging option to cmake
+ Since the original cmake file produces some additional output from cmake
+ which we don't need, we introduce a new variable CPR_BUILD_DEB_PACKAGE. 
+ If it is set, the additional cmake output is not installed.
+Author: Philip Sändig <deb@libcpr.org>
+Bug-Debian: https://bugs.debian.org/0000
+
+---
+
+--- libcpr-1.9.0.orig/CMakeLists.txt
++++ libcpr-1.9.0/CMakeLists.txt
+@@ -47,6 +47,7 @@ cpr_option(CPR_ENABLE_LINTING "Set to ON
+ cpr_option(CPR_ENABLE_CPPCHECK "Set to ON to enable Cppcheck static analysis. Requires CPR_BUILD_TESTS and CPR_BUILD_TESTS_SSL to be OFF to prevent checking google tests source code." OFF)
+ cpr_option(CPR_BUILD_TESTS "Set to ON to build cpr tests." OFF)
+ cpr_option(CPR_BUILD_TESTS_SSL "Set to ON to build cpr ssl tests" ${CPR_BUILD_TESTS})
++cpr_option(CPR_BUILD_DEB_PACKAGE "For generation of .deb package only." OFF)
+ message(STATUS "=======================================================")
+ 
+ include(GNUInstallDirs)
+--- libcpr-1.9.0.orig/cpr/CMakeLists.txt
++++ libcpr-1.9.0/cpr/CMakeLists.txt
+@@ -45,7 +45,7 @@ set_target_properties(cpr
+ # Import GNU common install directory variables
+ include(GNUInstallDirs)
+ 
+-if(CPR_FORCE_USE_SYSTEM_CURL)
++if(CPR_FORCE_USE_SYSTEM_CURL AND NOT CPR_BUILD_DEB_PACKAGE)
+         install(TARGETS cpr
+                 EXPORT cprTargets
+                 RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
