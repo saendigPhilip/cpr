@@ -1,0 +1,31 @@
+From debian/rules:
+# You may need to patch CMakeLists.txt to set the library install path to be:
+#-install(TARGETS <sharedlibname> LIBRARY DESTINATION lib)
+#+install(TARGETS <sharedlibname> LIBRARY DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE})
+
+# Multiarch package requires library files to be installed to
+# /usr/lib/<triplet>/ .  If the build system does not support
+# $(DEB_HOST_MULTIARCH), you may need to override some targets such as
+# dh_auto_configure or dh_auto_install to use $(DEB_HOST_MULTIARCH) .
+
+
+From debian/source/control (= debian/tests/control ?):
+# DEP-8: autopkgtest - automatic as-installed package testing
+#        Please check * https://dep-team.pages.debian.net/deps/dep8/
+#                     * /usr/share/doc/autopkgtest
+#Tests: testcode.sh
+#Restrictions: allow-stderr, breaks-testbed, needs-internet, needs-root
+Also see: https://www.debian.org/doc/manuals/debmake-doc/ch05.en.html#ci
+
+
+From debian/watch:
+uscan is used to scan for new package version
+The watch-file defines URLs to look for new packages
+# Uncomment to examine a Webpage
+# <Webpage URL> <string match>
+#http://www.example.com/downloads.php libcpr-(.*)\.(?:tar.gz|tar.bz2|tar.xz)
+#
+# Uncomment to examine a Webserver directory
+#http://www.example.com/pub/libcpr-(.*)\.(?:tar.gz|tar.bz2|tar.xz)
+# Uncomment to find new files on GitHub using the tags page:
+#https://github.com/<user>/libcpr/tags .*/(\d[\d\.]*)\.(?:tar.gz|tar.bz2|tar.xz)
