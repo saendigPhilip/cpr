@@ -29,3 +29,12 @@ The watch-file defines URLs to look for new packages
 #http://www.example.com/pub/libcpr-(.*)\.(?:tar.gz|tar.bz2|tar.xz)
 # Uncomment to find new files on GitHub using the tags page:
 #https://github.com/<user>/libcpr/tags .*/(\d[\d\.]*)\.(?:tar.gz|tar.bz2|tar.xz)
+
+
+
+TODO:
+  - Add package tests
+  - Post-install of libcpr1: Remove files in /usr/include (-> Maybe CMakelists.txt patch)
+  - Add github repo to debian/watch (for uscan)
+  - Add zlib as a dependency, adapt build process (-> Maybe CMakelists.txt patch)
+
