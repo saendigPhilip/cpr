@@ -1,6 +1,5 @@
 libcpr (1.9.0-1) UNRELEASED; urgency=low
 
-  * Initial release. Closes: #nnnn
-    <nnnn is the bug number of your ITP>
+  * Initial release. Closes: #0000
 
- -- Philip Sändig <deb@libcpr.org>  Wed, 20 Jul 2022 12:33:24 +0200
+ -- Philip Sändig <deb@libcpr.org>  Tue, 19 Jul 2022 22:05:45 +0200
