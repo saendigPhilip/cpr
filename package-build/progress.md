@@ -85,3 +85,13 @@
    I: libcpr1: spelling-error-in-binary usr/lib/x86_64-linux-gnu/libcpr.so.1.9.0 procceed proceed
    ```
 
+### Further improvements
+For this package:
+- [ ] Update description of libcpr
+- [ ] Add package tests
+- [ ] Add github (or debian) repo to debian/watch (for updates with uscan)
+
+Suggested improvements for the next version of the package:
+- [ ] Add zlib as a dependency, adapt build process (-> Maybe CMakelists.txt patch)
+- [ ] Include changes from patches to upstream
+- [ ] Add Manpages
