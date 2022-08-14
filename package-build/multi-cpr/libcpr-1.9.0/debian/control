@@ -13,7 +13,7 @@ Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: libssl3, libcurl4, ${misc:Depends}, ${shlibs:Depends}
-Description: A C++ wrapper library around libcurl - shared library
+Description: C++ wrapper library around libcurl - shared library
  The project is inspried by the Python Request project.
  Using the more expressive language facilities of C++11,
  it captures the essence of making network calls into a
@@ -27,7 +27,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: libcpr1 (= 1.9.0), ${misc:Depends}
-Description: A C++ wrapper library around libcurl - development files
+Description: C++ wrapper library around libcurl - development files
  The project is inspried by the Python Request project.
  Using the more expressive language facilities of C++11,
  it captures the essence of making network calls into a
