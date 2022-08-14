@@ -73,8 +73,15 @@
    I: libcpr1: spelling-error-in-binary usr/lib/x86_64-linux-gnu/libcpr.so.1.9.0 procceed proceed
    ```
 3. In progress
-   - [ ] Adapt the debian packaging files
-   - [ ] Build the package using `debuild`
-   - [ ] Check lintian Output. If there are errors/warnings, start next iteration
-
+   - [x] Adapt the debian packaging files
+   - [x] Build the package using `debuild`
+   - [x] Check lintian Output. If there are errors/warnings, start next iteration
+   The only lintian issues left are of minor importance:
+   ```
+   W: libcpr-dev: improbable-bug-number-in-closes 0000
+   W: libcpr1: improbable-bug-number-in-closes 0000
+   I: libcpr1: no-symbols-control-file usr/lib/x86_64-linux-gnu/libcpr.so.1.9.0
+   I: libcpr source: patch-not-forwarded-upstream debian/patches/000-deb-package-option.patch
+   I: libcpr1: spelling-error-in-binary usr/lib/x86_64-linux-gnu/libcpr.so.1.9.0 procceed proceed
+   ```
 
